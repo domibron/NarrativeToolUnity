@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c6cc636a94489f4c85a4414c909b12f, type: 3}
+  m_Name: Graph Name
+  m_EditorClassIdentifier: 
+  DialogNodes:
+  - DialogNodeGUID: ce4ebf42281c84e48bc6a25da06477dc
+    DialogNodeName: 
+    Dialog: 
+    Position: {x: 0, y: 0}
+    InputConnectedGUIDs: []
+    OutputConnectedGUIDs:
+    - 64d3a8f2464d9b9449718365d519e656
+    IsStart: 1
+  - DialogNodeGUID: 82d259a5726b3a842a16f6a06315e5f0
+    DialogNodeName: 'wad  wdwad awd wad '
+    Dialog: dwa awd wad wad wad a
+    Position: {x: 441, y: 444}
+    InputConnectedGUIDs:
+    - 64d3a8f2464d9b9449718365d519e656
+    OutputConnectedGUIDs:
+    - be6d8ce9f9d134a4eb5576664e90f310
+    IsStart: 0
+  - DialogNodeGUID: 64d3a8f2464d9b9449718365d519e656
+    DialogNodeName: 'a dwdwa wad '
+    Dialog: wad dwa wad awd wad awd w
+    Position: {x: 125, y: 136}
+    InputConnectedGUIDs:
+    - ce4ebf42281c84e48bc6a25da06477dc
+    OutputConnectedGUIDs:
+    - be6d8ce9f9d134a4eb5576664e90f310
+    - 82d259a5726b3a842a16f6a06315e5f0
+    IsStart: 0
+  - DialogNodeGUID: be6d8ce9f9d134a4eb5576664e90f310
+    DialogNodeName: 'wad awd adw '
+    Dialog: "wad awd d \nawd awd \nawd \nawd \nawd \nawd \nawd "
+    Position: {x: 775, y: 201}
+    InputConnectedGUIDs:
+    - 64d3a8f2464d9b9449718365d519e656
+    - 82d259a5726b3a842a16f6a06315e5f0
+    OutputConnectedGUIDs: []
+    IsStart: 0
+  StartNode:
+    DialogNodeGUID: 64d3a8f2464d9b9449718365d519e656
+    DialogNodeName: 'a dwdwa wad '
+    Dialog: wad dwa wad awd wad awd w
+    Position: {x: 125, y: 136}
+    InputConnectedGUIDs:
+    - ce4ebf42281c84e48bc6a25da06477dc
+    OutputConnectedGUIDs:
+    - be6d8ce9f9d134a4eb5576664e90f310
+    - 82d259a5726b3a842a16f6a06315e5f0
+    IsStart: 0
