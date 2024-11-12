@@ -3,6 +3,7 @@ using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 using DialogSO;
 using UnityEngine;
+using System.IO;
 
 [CustomEditor(typeof(DialogTreeData))]
 public class DialogOSInspector : Editor
@@ -19,7 +20,9 @@ public class DialogOSInspector : Editor
 
 			DialogTreeEditor DialogEditor = DialogEditorWindow as DialogTreeEditor;
 
-			DialogEditor.LoadData();
+			string path = AssetDatabase.GetAssetPath(target);
+
+			DialogEditor.LoadData(path);
 		}
 	}
 }

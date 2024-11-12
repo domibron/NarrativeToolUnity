@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using DialogSO;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
@@ -119,7 +120,7 @@ public static class DialogTreeSavingAndLoading
 	}
 
 #nullable enable
-	private static DialogTreeData PromptUserForSavedAsset()
+	public static DialogTreeData PromptUserForSavedAsset()
 	{
 
 		// Load scriptable object
@@ -130,7 +131,7 @@ public static class DialogTreeSavingAndLoading
 	}
 #nullable restore
 
-	private static void PopulateGraphViewFromAsset(TreeGraphView graphView, DialogTreeData saveData)
+	public static void PopulateGraphViewFromAsset(TreeGraphView graphView, DialogTreeData saveData)
 	{
 		// Temporarily store all nodes from SO here
 		Dictionary<GUID, DialogNode> nodes = new Dictionary<GUID, DialogNode>();
@@ -285,5 +286,25 @@ public static class DialogTreeSavingAndLoading
 			throw new ArgumentException("Invalid GUID, cannot convert from string to GUID.");
 		}
 		return guid;
+	}
+
+	[OnOpenAssetAttribute]
+	public static bool OpenGraphAsset(int instanceID, int line)
+	{
+		// This gets called whenever ANY asset is double clicked 
+		// So we gotta check if the asset is of the proper type
+		UnityEngine.Object asset = EditorUtility.InstanceIDToObject(instanceID);
+		if (!(asset is DialogTreeData)) return false;
+
+		bool windowIsOpen = EditorWindow.HasOpenInstances<DialogTreeEditor>();
+		if (!windowIsOpen) EditorWindow.CreateWindow<DialogTreeEditor>();
+		else EditorWindow.FocusWindowIfItsOpen<DialogTreeEditor>();
+
+		DialogTreeEditor window = EditorWindow.GetWindow<DialogTreeEditor>();
+		string assetPath = AssetDatabase.GetAssetPath(instanceID);
+		// string fileName = System.IO.Path.GetFileNameWithoutExtension(assetPath);
+		window.LoadData(assetPath);
+
+		return true;
 	}
 }

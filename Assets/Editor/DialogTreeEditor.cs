@@ -2,6 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEditor.UIElements;
+using DialogSO;
 
 public class DialogTreeEditor : EditorWindow
 {
@@ -93,8 +94,11 @@ public class DialogTreeEditor : EditorWindow
 		CreateGUI();
 	}
 
-	public void LoadData()
+	public void LoadData(string path)
 	{
+		DialogTreeData saveData = AssetDatabase.LoadAssetAtPath<DialogTreeData>(path);
 
+
+		DialogTreeSavingAndLoading.PopulateGraphViewFromAsset(graphView, saveData);
 	}
 }

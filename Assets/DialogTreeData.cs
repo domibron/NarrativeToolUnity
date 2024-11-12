@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.Callbacks;
 using UnityEngine;
 
 namespace DialogSO
@@ -26,6 +27,8 @@ namespace DialogSO
 					return dialogNode;
 			return null;
 		}
+
+
 	}
 
 	[System.Serializable]
