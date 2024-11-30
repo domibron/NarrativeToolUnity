@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-
-[CreateAssetMenu(fileName = "New Dialog", menuName = "NarrativeToolUnity/SO_Dialog")]
-public class SO_Dialog : ScriptableObject
+namespace SmashKeyboardStudios.NarrativeTool.Editor
 {
-	[SerializeField] string _dialogName;
-	[SerializeField, TextArea(5, 500)] string _dialog;
+	[CreateAssetMenu(fileName = "New Dialog", menuName = "NarrativeToolUnity/SO_Dialog")]
+	public class SO_Dialog : ScriptableObject
+	{
+		[SerializeField] string _dialogName;
+		[SerializeField, TextArea(5, 500)] string _dialog;
 
-	public string DialogName { get { return _dialogName; } }
-	public string Dialog { get { return _dialog; } }
+		public string DialogName { get { return _dialogName; } }
+		public string Dialog { get { return _dialog; } }
+	}
 }

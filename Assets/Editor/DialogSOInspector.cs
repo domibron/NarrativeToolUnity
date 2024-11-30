@@ -1,28 +1,31 @@
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
-using DialogSO;
+using SmashKeyboardStudios.NarrativeTool.Data;
 using UnityEngine;
 using System.IO;
 
-[CustomEditor(typeof(DialogTreeData))]
-public class DialogOSInspector : Editor
+namespace SmashKeyboardStudios.NarrativeTool.Editor
 {
-	public override void OnInspectorGUI()
+	[CustomEditor(typeof(DialogTreeData))]
+	public class DialogOSInspector : UnityEditor.Editor
 	{
-		DrawDefaultInspector();
-
-		if (GUILayout.Button("Open"))
+		public override void OnInspectorGUI()
 		{
-			EditorApplication.ExecuteMenuItem("Window/DialogTreeEditor");
+			DrawDefaultInspector();
 
-			EditorWindow DialogEditorWindow = EditorWindow.GetWindow(typeof(DialogTreeEditor));
+			if (GUILayout.Button("Open"))
+			{
+				EditorApplication.ExecuteMenuItem("Window/DialogTreeEditor");
 
-			DialogTreeEditor DialogEditor = DialogEditorWindow as DialogTreeEditor;
+				EditorWindow DialogEditorWindow = EditorWindow.GetWindow(typeof(DialogTreeEditor));
 
-			string path = AssetDatabase.GetAssetPath(target);
+				DialogTreeEditor DialogEditor = DialogEditorWindow as DialogTreeEditor;
 
-			DialogEditor.LoadData(path);
+				string path = AssetDatabase.GetAssetPath(target);
+
+				DialogEditor.LoadData(path);
+			}
 		}
 	}
 }

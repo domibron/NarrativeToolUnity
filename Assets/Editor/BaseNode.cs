@@ -4,9 +4,12 @@ using UnityEditor;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
-public abstract class BaseNode : Node
+namespace SmashKeyboardStudios.NarrativeTool.Editor
 {
-	internal GUID NodeGUID;
+	public abstract class BaseNode : Node
+	{
+		internal GUID NodeGUID;
 
 
+	}
 }

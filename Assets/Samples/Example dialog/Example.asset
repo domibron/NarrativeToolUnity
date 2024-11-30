@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de636a66f14f01146bda4b0743b008e1, type: 3}
+  m_Name: Example
+  m_EditorClassIdentifier: 
+  DialogNodes:
+  - DialogNodeGUID: f0d78135e8003a0458cb4982f81d23f2
+    DialogNodeName: 
+    Dialog: 
+    Position: {x: 0, y: 0}
+    InputConnectedGUIDs: []
+    OutputConnectedGUIDs:
+    - 8585635153c6f6441ae749018aed84f1
+    IsStart: 1
+  - DialogNodeGUID: 8585635153c6f6441ae749018aed84f1
+    DialogNodeName: 
+    Dialog: hello
+    Position: {x: 298.66666, y: 210}
+    InputConnectedGUIDs:
+    - f0d78135e8003a0458cb4982f81d23f2
+    OutputConnectedGUIDs:
+    - d952da654348f1f4eab5bfb041ae7ca8
+    - a3fe1424748f2434faa741c55736d58f
+    IsStart: 0
+  - DialogNodeGUID: d952da654348f1f4eab5bfb041ae7ca8
+    DialogNodeName: yes choice
+    Dialog: good
+    Position: {x: 705.3333, y: 354}
+    InputConnectedGUIDs:
+    - 8585635153c6f6441ae749018aed84f1
+    OutputConnectedGUIDs:
+    - 6d51a329a58c27c469508fbf34e9d030
+    IsStart: 0
+  - DialogNodeGUID: a3fe1424748f2434faa741c55736d58f
+    DialogNodeName: bad choice
+    Dialog: bad
+    Position: {x: 795.3333, y: 672.6667}
+    InputConnectedGUIDs:
+    - 8585635153c6f6441ae749018aed84f1
+    OutputConnectedGUIDs:
+    - 6d51a329a58c27c469508fbf34e9d030
+    IsStart: 0
+  - DialogNodeGUID: 6d51a329a58c27c469508fbf34e9d030
+    DialogNodeName: bye
+    Dialog: bye
+    Position: {x: 1416, y: 596.6667}
+    InputConnectedGUIDs:
+    - a3fe1424748f2434faa741c55736d58f
+    - d952da654348f1f4eab5bfb041ae7ca8
+    OutputConnectedGUIDs: []
+    IsStart: 0
+  StartNode:
+    DialogNodeGUID: 8585635153c6f6441ae749018aed84f1
+    DialogNodeName: 
+    Dialog: hello
+    Position: {x: 298.66666, y: 210}
+    InputConnectedGUIDs:
+    - f0d78135e8003a0458cb4982f81d23f2
+    OutputConnectedGUIDs:
+    - d952da654348f1f4eab5bfb041ae7ca8
+    - a3fe1424748f2434faa741c55736d58f
+    IsStart: 0
