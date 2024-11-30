@@ -1,0 +1,24 @@
+{
+  "name": "com.smashkeyboardstudios.narrativetool.core",
+  "version": "1.0.0",
+  "displayName": "Narrative Tool",
+  "description": "A node based narrative tool to generate a asset to use by programmers to create seemless narrative to code experiance.",
+  "unity": "2023.2",
+  "documentationUrl": "https://github.com/domibron/NarrativeToolUnity",
+  "changelogUrl": "https://github.com/domibron/NarrativeToolUnity",
+  "licensesUrl": "https://github.com/domibron/NarrativeToolUnity",
+  "dependencies": {
+    
+ },
+ "keywords": [
+    "narrativetool",
+    "Narrative Tool",
+    "narrative tool",
+    "NarrativeTool"
+  ],
+  "author": {
+    "name": "smashkeyboardstudios",
+    "email": "2mcned00@solent.ac.uk",
+    "url": "https://smashkeyboardstudi.wixsite.com/smashkeyboardstudios"
+  }
+}
