@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using SmashKeyboardStudios.NarrativeTool.Data;
 using UnityEditor;
@@ -30,8 +31,8 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 				if (e is DialogNode dialogNode)
 				{
 					// Create and initialise save data for this weapon
-					DialogSaveData dialog = new DialogSaveData();
-					dialog.Init(dialogNode.NodeGUID, dialogNode.GetPosition().position, dialogNode.NameOfNode, dialogNode.Dialog);
+					DialogNodeSaveData dialog = new DialogNodeSaveData();
+					dialog.Init(dialogNode.NodeGUID, dialogNode.GetPosition().position, dialogNode.OptionTextForThisNode, dialogNode.Dialog);
 
 					List<GUID> inputDialogNodes = new List<GUID>();
 					List<GUID> outputDialogNodes = new List<GUID>();
@@ -71,7 +72,7 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 				}
 				else if (e is StartNode startNode)
 				{
-					DialogSaveData startDialogData = new DialogSaveData();
+					DialogNodeSaveData startDialogData = new DialogNodeSaveData();
 					startDialogData.Init(startNode.NodeGUID, startNode.GetPosition().position, "", "", true);
 
 					saveData.DialogNodes.Add(startDialogData);
@@ -108,15 +109,19 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 		/// <summary>
 		/// Load the WeaponTreeAsset and populate a graph view with the data.
 		/// </summary>
-		public static void Load(TreeGraphView graphView)
+		/// <returns>The name of the asset.</returns>
+		public static string Load(TreeGraphView graphView)
 		{
 			try
 			{
-				PopulateGraphViewFromAsset(graphView, PromptUserForSavedAsset());
+				DialogTreeData data = PromptUserForSavedAsset();
+				PopulateGraphViewFromAsset(graphView, data);
+				return data.name;
 			}
 			catch (Exception ex)
 			{
 				Debug.LogError(ex.Message);
+				return "New Graph";
 			}
 		}
 
@@ -154,7 +159,7 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 					continue;
 				}
 
-				DialogNode node = graphView.CreateDialogNode(dialogGUID, dialogNode.Position, dialogNode.DialogNodeName, dialogNode.Dialog);
+				DialogNode node = graphView.CreateDialogNode(dialogGUID, dialogNode.Position, dialogNode.DialogNodeOptionText, dialogNode.Dialog);
 
 				graphView.AddElement(node);
 				nodes.Add(dialogGUID, node);
@@ -208,13 +213,7 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 			// because we made input ports single capacity.
 			foreach (Edge edge in inputPort.connections)
 			{
-				// If there is a port, the following line will extract the connected
-				// node by first going to the edge's output port, then to it's node.
-				//                                         ||
-				//                                         \/
-				//                           output port  []------[]  input port
 
-				// GAAHHHHHH YOU COMMENTS ARE GETTING IN THEH WAYYHYYSSYY!!!!!!!!!
 
 				nodeGUID = (edge.output.node as BaseNode).NodeGUID;
 				guids.Add(nodeGUID);
@@ -243,13 +242,7 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 			// because we made input ports single capacity.
 			foreach (Edge edge in outputPort.connections)
 			{
-				// If there is a port, the following line will extract the connected
-				// node by first going to the edge's output port, then to it's node.
-				//                                         ||
-				//                                         \/
-				//                           output port  []------[]  input port
 
-				// GAAHHHHHH YOU COMMENTS ARE GETTING IN THEH WAYYHYYSSYY!!!!!!!!!
 
 				nodeGUID = (edge.input.node as BaseNode).NodeGUID;
 				guids.Add(nodeGUID);

@@ -13,58 +13,103 @@ MonoBehaviour:
   m_Name: Example
   m_EditorClassIdentifier: 
   DialogNodes:
-  - DialogNodeGUID: f0d78135e8003a0458cb4982f81d23f2
-    DialogNodeName: 
+  - DialogNodeGUID: 8585635153c6f6441ae749018aed84f1
+    DialogNodeOptionText: Hello
+    Dialog: You don't look like you're from around here.
+    Position: {x: 99, y: 0}
+    InputConnectedGUIDs:
+    - 6fb35fc2702f35c4aa0aaf024516cf09
+    OutputConnectedGUIDs:
+    - d952da654348f1f4eab5bfb041ae7ca8
+    - a3fe1424748f2434faa741c55736d58f
+    IsStart: 0
+  - DialogNodeGUID: 6fb35fc2702f35c4aa0aaf024516cf09
+    DialogNodeOptionText: 
     Dialog: 
-    Position: {x: 0, y: 0}
+    Position: {x: -19, y: 0}
     InputConnectedGUIDs: []
     OutputConnectedGUIDs:
     - 8585635153c6f6441ae749018aed84f1
     IsStart: 1
-  - DialogNodeGUID: 8585635153c6f6441ae749018aed84f1
-    DialogNodeName: 
-    Dialog: hello
-    Position: {x: 298.66666, y: 210}
-    InputConnectedGUIDs:
-    - f0d78135e8003a0458cb4982f81d23f2
-    OutputConnectedGUIDs:
-    - d952da654348f1f4eab5bfb041ae7ca8
-    - a3fe1424748f2434faa741c55736d58f
-    IsStart: 0
   - DialogNodeGUID: d952da654348f1f4eab5bfb041ae7ca8
-    DialogNodeName: yes choice
-    Dialog: good
-    Position: {x: 705.3333, y: 354}
+    DialogNodeOptionText: I came here from Newton.
+    Dialog: 'Newton, eh?
+
+      I heard there''s trouble brewing down there.'
+    Position: {x: 623, y: 116}
     InputConnectedGUIDs:
     - 8585635153c6f6441ae749018aed84f1
     OutputConnectedGUIDs:
-    - 6d51a329a58c27c469508fbf34e9d030
+    - 2cde945c9eb21b04990edea41911ac17
+    - eb13273445eea54458b65aa2c04fa075
+    IsStart: 0
+  - DialogNodeGUID: 2cde945c9eb21b04990edea41911ac17
+    DialogNodeOptionText: I haven't heard about any trouble.
+    Dialog: Don't you worry about it. Say, do you have somthing to eat? I'm starving.
+    Position: {x: 1167, y: 156}
+    InputConnectedGUIDs:
+    - d952da654348f1f4eab5bfb041ae7ca8
+    OutputConnectedGUIDs: []
     IsStart: 0
   - DialogNodeGUID: a3fe1424748f2434faa741c55736d58f
-    DialogNodeName: bad choice
-    Dialog: bad
-    Position: {x: 795.3333, y: 672.6667}
+    DialogNodeOptionText: I've lived here all my life
+    Dialog: Oh really? then you must know Mr. Bowler.
+    Position: {x: 623, y: -97}
     InputConnectedGUIDs:
     - 8585635153c6f6441ae749018aed84f1
     OutputConnectedGUIDs:
-    - 6d51a329a58c27c469508fbf34e9d030
+    - 94a4216645fbb1d43829623403d848cc
+    - 18b8942105192e542b83453304464532
     IsStart: 0
-  - DialogNodeGUID: 6d51a329a58c27c469508fbf34e9d030
-    DialogNodeName: bye
-    Dialog: bye
-    Position: {x: 1416, y: 596.6667}
+  - DialogNodeGUID: 94a4216645fbb1d43829623403d848cc
+    DialogNodeOptionText: Mr Bowler is a good friend of mine!
+    Dialog: You liar! There ain't no Mr. Bowler, I made him up!
+    Position: {x: 1155, y: -176}
     InputConnectedGUIDs:
     - a3fe1424748f2434faa741c55736d58f
+    OutputConnectedGUIDs: []
+    IsStart: 0
+  - DialogNodeGUID: eb13273445eea54458b65aa2c04fa075
+    DialogNodeOptionText: Did I say Newton? I'm actually from Springville.
+    Dialog: Oh really? then you must know Mr. Bowler.
+    Position: {x: 1091, y: 353}
+    InputConnectedGUIDs:
     - d952da654348f1f4eab5bfb041ae7ca8
+    OutputConnectedGUIDs:
+    - 69ce56e30a6b71540929aabcf0519a1d
+    - 94bf2af068add814cb077a403a73ca7b
+    IsStart: 0
+  - DialogNodeGUID: 69ce56e30a6b71540929aabcf0519a1d
+    DialogNodeOptionText: Mr Bowler is a good friend of mine!
+    Dialog: You liar! There ain't no Mr. Bowler, I made him up!
+    Position: {x: 1557, y: 318}
+    InputConnectedGUIDs:
+    - eb13273445eea54458b65aa2c04fa075
+    OutputConnectedGUIDs: []
+    IsStart: 0
+  - DialogNodeGUID: 94bf2af068add814cb077a403a73ca7b
+    DialogNodeOptionText: Who?
+    Dialog: Don't you worry about it. Say, do you have somthing to eat? I'm starving.
+    Position: {x: 1546, y: 488}
+    InputConnectedGUIDs:
+    - eb13273445eea54458b65aa2c04fa075
+    OutputConnectedGUIDs: []
+    IsStart: 0
+  - DialogNodeGUID: 18b8942105192e542b83453304464532
+    DialogNodeOptionText: Who?
+    Dialog: Don't you worry about it. Say, do you have somthing to eat? I'm starving.
+    Position: {x: 1155, y: 0}
+    InputConnectedGUIDs:
+    - a3fe1424748f2434faa741c55736d58f
     OutputConnectedGUIDs: []
     IsStart: 0
   StartNode:
     DialogNodeGUID: 8585635153c6f6441ae749018aed84f1
-    DialogNodeName: 
-    Dialog: hello
-    Position: {x: 298.66666, y: 210}
+    DialogNodeOptionText: Hello
+    Dialog: You don't look like you're from around here.
+    Position: {x: 99, y: 0}
     InputConnectedGUIDs:
-    - f0d78135e8003a0458cb4982f81d23f2
+    - 6fb35fc2702f35c4aa0aaf024516cf09
     OutputConnectedGUIDs:
     - d952da654348f1f4eab5bfb041ae7ca8
     - a3fe1424748f2434faa741c55736d58f

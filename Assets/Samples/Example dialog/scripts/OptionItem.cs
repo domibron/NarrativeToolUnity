@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-namespace SmashKeyboardStudios.NarrativeTool
+namespace SmashKeyboardStudios.NarrativeTool.Samples.ExampleDialog
 {
 	public class OptionItem : MonoBehaviour
 	{
@@ -11,17 +11,7 @@ namespace SmashKeyboardStudios.NarrativeTool
 
 		public int Option;
 
-		// Start is called before the first frame update
-		void Start()
-		{
 
-		}
-
-		// Update is called once per frame
-		void Update()
-		{
-
-		}
 
 		public void SetUpItem(int option, string optionText)
 		{
@@ -31,7 +21,7 @@ namespace SmashKeyboardStudios.NarrativeTool
 
 		public void OnClicked()
 		{
-			DialogManager.Instance.SelectOption(Option);
+			ExampleDialogManager.Instance.SelectOption(Option);
 		}
 
 

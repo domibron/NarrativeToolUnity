@@ -8,15 +8,18 @@ using UnityEngine.UIElements;
 
 namespace SmashKeyboardStudios.NarrativeTool.Editor
 {
+	/// <summary>
+	/// Creates the graph.
+	/// </summary>
 	public class TreeGraphView : GraphView
 	{
+		// We must only have one start node, this keeps track of it.
 		public StartNode StartNode;
 		// public GUID StartNodeGuid;
 
-		// We can use a ctor to initialise our graph view
+		// We can use a ctor to initialise our graph view.
 		public TreeGraphView()
 		{
-
 
 			AddGridBackground();
 			AddStyle();
@@ -25,14 +28,19 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 			Init();
 		}
 
+		/// <summary>
+		/// Sets up the TreeGraphView.
+		/// </summary>
 		public void Init()
 		{
 			if (StartNode == null)
 			{
-				// magic.
+				// magic. WYM Magic? all this does is create the start node if there isn't one initialized.
 				StartNode = CreateStartNode(Vector2.zero);
 				((GraphView)this).AddElement(StartNode);
 			}
+
+
 		}
 
 		private void AddGridBackground()
@@ -52,8 +60,8 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 		/// </summary>
 		private void AddStyle()
 		{
-			// Note: uss files must be in "Assets/Editor Default Resources/"
-			// StyleSheet styleSheet = EditorGUIUtility.Load("GraphStyle.uss") as StyleSheet;
+			// trys to get the uss asset in packages, but if that failed, it means its in the assets.
+			// if it does not exsists. freak out.
 			StyleSheet styleSheet = AssetDatabase.LoadAssetAtPath<StyleSheet>("Packages/com.smashkeyboardstudios.narrativetool.core/Views/GraphStyle.uss");
 			if (styleSheet == null)
 			{
@@ -73,9 +81,10 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 			// Zoom viewport, either work but SetupZoom is a wrapper specifically for graph views
 			//this.AddManipulator(new ContentZoomer());
 			SetupZoom(ContentZoomer.DefaultMinScale, ContentZoomer.DefaultMaxScale);
-			// Move selected nodes around
-			this.AddManipulator(new SelectionDragger()); // Must be before rectangle selector
-														 // Select nodes using rectangle selection
+			// Move selected nodes around, Must be before rectangle selector
+			this.AddManipulator(new SelectionDragger());
+
+			// Select nodes using rectangle selection
 			this.AddManipulator(new RectangleSelector());
 			// Right-click context menu option addition
 			this.AddManipulator(CreateNodeContextualMenu());
@@ -88,7 +97,8 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 		/// </summary>
 		private IManipulator CreateNodeContextualMenu()
 		{
-			// Below uses lambdas to define a new menu option and the action that
+			// TODO figure out why they are offset by fuck.
+
 			// the menu option will take when selected
 			ContextualMenuManipulator manipulator = new ContextualMenuManipulator(
 				menuEvent => menuEvent.menu.AppendAction(
@@ -105,7 +115,6 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 
 		private IManipulator CreateStartNodeContextualMenu()
 		{
-			// Below uses lambdas to define a new menu option and the action that
 			// the menu option will take when selected
 			ContextualMenuManipulator manipulator = new ContextualMenuManipulator(
 				menuEvent => menuEvent.menu.AppendAction(
@@ -121,7 +130,7 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 		}
 
 		/// <summary>
-		/// Creates a new weapon node to display on the graph.
+		/// Creates a new dialog node to display on the graph.
 		/// </summary>
 		/// <param name="position">Location of the node on the graph.</param>
 		/// <returns>Created node to be used in AddElement(..).</returns>

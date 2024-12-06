@@ -6,9 +6,14 @@ using SmashKeyboardStudios.NarrativeTool.Data;
 
 namespace SmashKeyboardStudios.NarrativeTool.Editor
 {
+	/// <summary>
+	/// The base for the dialog tree editor.
+	/// </summary>
 	public class DialogTreeEditor : EditorWindow
 	{
-		TreeGraphView graphView;
+		TreeGraphView _graphView;
+
+		private string _graphName = "New Dialog Tree";
 
 		[MenuItem("Window/DialogTreeEditor")]
 		public static void ShowExample()
@@ -32,10 +37,11 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 
 		private void SetUpGraph()
 		{
-			graphView = new TreeGraphView();
-			graphView.StretchToParentSize();
-			rootVisualElement.Add(graphView);
-			graphView.Init();
+			_graphView = new TreeGraphView();
+			_graphView.StretchToParentSize();
+			rootVisualElement.Add(_graphView);
+			_graphName = "New Dialog Tree";
+			_graphView.Init();
 		}
 
 		private void AddToolbar()
@@ -43,7 +49,7 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 			// Text entry field that we can enter a name for
 			TextField filenameTextField = new TextField()
 			{
-				value = "Graph Name",
+				value = _graphName,
 				label = "Filename"
 			};
 
@@ -52,10 +58,8 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 			{
 				text = "Save",
 				clickable = new Clickable(() =>
-				DialogTreeSavingAndLoading.Save(filenameTextField.value, graphView)),
+				DialogTreeSavingAndLoading.Save(filenameTextField.value, _graphView)),
 			};
-			// Alternative click event handling
-			//saveButton.clicked += () => WeaponTreeSaveUtils.Save(filenameTextField.value);
 
 			// Button that invokes a load procedure when pressed
 			Button loadButton = new Button()
@@ -87,12 +91,14 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 		private void OnLoad()
 		{
 			OnClear();
-			DialogTreeSavingAndLoading.Load(graphView);
+			string name = DialogTreeSavingAndLoading.Load(_graphView);
+			_graphName = name;
 		}
 
 		private void OnClear()
 		{
 			rootVisualElement.Clear();
+			_graphName = "New Dialog Tree";
 			CreateGUI();
 		}
 
@@ -100,8 +106,24 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 		{
 			DialogTreeData saveData = AssetDatabase.LoadAssetAtPath<DialogTreeData>(path);
 
+			foreach (var item in rootVisualElement.Children())
+			{
+				if (item.GetType() == typeof(Toolbar))
+				{
+					foreach (var item2 in item.Children())
+					{
+						if (item2.GetType() == typeof(TextField))
+						{
+							((TextField)item2).value = saveData.name;
 
-			DialogTreeSavingAndLoading.PopulateGraphViewFromAsset(graphView, saveData);
+
+						}
+					}
+				}
+			}
+
+
+			DialogTreeSavingAndLoading.PopulateGraphViewFromAsset(_graphView, saveData);
 		}
 	}
 }
