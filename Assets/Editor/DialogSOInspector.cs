@@ -14,6 +14,8 @@ namespace SmashKeyboardStudios.NarrativeTool.Editor
 		{
 			DrawDefaultInspector();
 
+
+
 			if (GUILayout.Button("Open"))
 			{
 				EditorApplication.ExecuteMenuItem("Window/DialogTreeEditor");
